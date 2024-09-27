@@ -5,18 +5,23 @@ app = Flask(__name__)
 CORS(app)
 
 @app.route('/', methods=['POST', 'GET'])
-def Home():
+def getSliderInfo():
     data = request.get_json()
-    user_text = data.get('text', '')
-    slider_value = data.get('value', 0)
+    slider_value = data.get('sliderValue', None)
+    investment_amount = data.get('investmentAmount', None)
 
-    message = f"You chose {slider_value}"
-
-    modified_text = user_text.upper()
-    
-    print(data)
-
-    return jsonify({'message': message})
+    if slider_value is not None:
+        message = f"You chose {slider_value}"
+        print(data)
+        return jsonify({'message': message})
+    elif investment_amount is not None:
+        message = f"Your investment amount is £{investment_amount}."
+        print(data)
+        return jsonify({'message': message})
+    else:
+        message = "No valid data provided"
+        print(data)
+        return jsonify({'message': message})
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
