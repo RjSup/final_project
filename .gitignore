@@ -10,7 +10,8 @@ frontend/package.json
 
 package-lock.json
 
-venv/
+.venv
+.venv/
 .env
 __pycache__/
 *.pyc
