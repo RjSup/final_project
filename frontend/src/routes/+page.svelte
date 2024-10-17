@@ -2,20 +2,20 @@
     import { slide } from "svelte/transition";
 
     // for initial investment value
-    let initalAmount = '';
+    let initialAmount = '';
     let returnedAmount = '';
 
     // for slider input
     let sliderValue = 5;
     let returnedSliderValue = '';
 
-    async function sendInvestmentAmout() {
+    async function sendInvestmentAmount() {
         const response = await fetch('http://localhost:5000', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ investmentAmount: initalAmount })
+            body: JSON.stringify({ investmentAmount: initialAmount })
         });
 
         const data = await response.json();
@@ -36,13 +36,13 @@
     }
 </script>
 
-<h1>Inital investment</h1>
+<h1>Initial investment</h1>
 <label for="initialAmount">
-    Enter inital investment:
-    <input id="initialAmount" type="number" bind:value={initalAmount}>
+    Enter initial investment:
+    <input id="initialAmount" type="number" bind:value={initialAmount}>
 </label>
 
-<button on:click={sendInvestmentAmout}>Submit</button>
+<button on:click={sendInvestmentAmount}>Submit</button>
 
 {#if returnedAmount}
     <p>The server returned: {returnedAmount}</p>
